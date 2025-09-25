@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  build-echarts:
     runs-on: macos-latest
 
     steps:
@@ -19,8 +19,14 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Run Continuous Integration
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Build and Test mcp-echarts
         run: |
-          npm install
-          npm run build
-          npx vitest --watch=false
+          cd echarts
+          pnpm install
+          pnpm run build
+          pnpm test --run
