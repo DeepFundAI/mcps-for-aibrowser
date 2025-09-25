@@ -29,4 +29,4 @@ jobs:
           cd echarts
           pnpm install
           pnpm run build
-          pnpm test --run
+          pnpm run test --run
